@@ -150,12 +150,12 @@ class bladeandsoul:
 			await self.bot.say("In order to use the BNS market search function, type in whatever item after you type `!bnsmarket` so i can search through <http://www.bnsmarketplace.com/search> for it. Currently i only look for the item exactly as typed, will be upgraded later!")
 			return
 		m = item.lower().replace(' ', '_')
-		async with aiohttp.get('http://www.bnsmarketplace.com/search/{}'.format(m)) as r:
+		async with aiohttp.get('http://www.bns.academy/live-marketplace/?q='.format(m)) as r:
 			soup = BeautifulSoup(await r.text(), 'html.parser')
 			try:
 				NAg = soup.find_all(attrs={"id":"NAPanel"})[0].find_all(attrs={"id":"priceNAGold"})[0].string
 			except:
-				async with aiohttp.get('http://www.bnsmarketplace.com/item/{}'.format(m)) as t:
+				async with aiohttp.get('http://www.bns.academy/live-marketplace/?q='.format(m)) as t:
 					soups = BeautifulSoup(await t.text(), 'html.parser')
 					try:
 						err = soups.find_all(attrs={"id":"textResult"})[0].string
@@ -179,7 +179,7 @@ class bladeandsoul:
 							return
 					except:
 						pass
-				async with aiohttp.get('http://www.bnsmarketplace.com/item/{}'.format(m)) as r:
+				async with aiohttp.get('hhttp://www.bns.academy/live-marketplace/?q='.format(m)) as r:
 					soup = BeautifulSoup(await r.text(), 'html.parser')
 
 					NAg = soup.find_all(attrs={"id":"NAPanel"})[0].find_all(attrs={"id":"priceNAGold"})[0].string
